@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Info &mdash; AP Physics 1 Study Hub</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <section class="hero">
+      <h1>AP Physics 1 Exam Info</h1>
+      <p>
+        A quick reference for the exam's science practices, course topics, format, and
+        free-response questions. This is a study aid summary, not an official College Board
+        publication &mdash; always check the official AP Physics 1 Course and Exam Description
+        for authoritative details.
+      </p>
+    </section>
+
+    <section>
+      <h2>Science Practices</h2>
+      <p>
+        The AP Physics 1 exam assesses students on a set of science practices in addition to
+        content knowledge:
+      </p>
+      <ul class="topic-list">
+        <li><strong>1. Modeling:</strong> Represent physical phenomena using diagrams, graphs, and models.</li>
+        <li><strong>2. Mathematical Routines:</strong> Select and apply mathematical relationships to solve problems.</li>
+        <li><strong>3. Scientific Questioning:</strong> Pose and refine scientific questions and hypotheses.</li>
+        <li><strong>4. Experimental Methods:</strong> Design and describe experimental procedures.</li>
+        <li><strong>5. Data Analysis:</strong> Analyze and interpret quantitative and qualitative data.</li>
+        <li><strong>6. Argumentation:</strong> Develop and justify scientific arguments using evidence and reasoning.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Course Topics (Units)</h2>
+      <div class="unit-grid" id="unit-grid"></div>
+    </section>
+
+    <section>
+      <h2>Exam Format</h2>
+      <table class="exam-format">
+        <thead>
+          <tr>
+            <th>Section</th>
+            <th>Question Type</th>
+            <th># of Questions</th>
+            <th>Exam Weighting</th>
+            <th>Timing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>I</td>
+            <td>Multiple Choice (including some multi-select)</td>
+            <td>50</td>
+            <td>50%</td>
+            <td>90 minutes</td>
+          </tr>
+          <tr>
+            <td>II</td>
+            <td>Free Response</td>
+            <td>4</td>
+            <td>50%</td>
+            <td>90 minutes</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="sim-readout">
+        Total exam time is 3 hours. A four-function, scientific, or graphing calculator is
+        permitted throughout the entire exam.
+      </p>
+    </section>
+
+    <section>
+      <h2>Free Response Questions</h2>
+      <p>The free-response section (Section II) typically includes four questions:</p>
+      <ul class="topic-list">
+        <li><strong>Experimental Design</strong> &mdash; design or evaluate an experiment.</li>
+        <li><strong>Qualitative/Quantitative Translation</strong> &mdash; connect qualitative reasoning with quantitative reasoning.</li>
+        <li><strong>Short Answer (paragraph argument)</strong> &mdash; explain reasoning in written form.</li>
+        <li><strong>Short Answer</strong> &mdash; a shorter, more targeted problem.</li>
+      </ul>
+      <p>
+        Full and partial credit is awarded for showing work, using correct reasoning, and applying
+        the science practices above &mdash; not just for a final numeric answer.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script type="module">
+    import { renderNav, renderFooter, unitList } from './assets/js/nav.mjs';
+    import * as unit0 from './assets/js/problems/unit0.mjs';
+    import * as unit1 from './assets/js/problems/unit1.mjs';
+    import * as unit2 from './assets/js/problems/unit2.mjs';
+    import * as unit3 from './assets/js/problems/unit3.mjs';
+    import * as unit4 from './assets/js/problems/unit4.mjs';
+    import * as unit5 from './assets/js/problems/unit5.mjs';
+    import * as unit6 from './assets/js/problems/unit6.mjs';
+    import * as unit7 from './assets/js/problems/unit7.mjs';
+    import * as unit8 from './assets/js/problems/unit8.mjs';
+
+    renderNav('', 'exam-info');
+    renderFooter();
+
+    const modules = { unit0, unit1, unit2, unit3, unit4, unit5, unit6, unit7, unit8 };
+    const grid = document.getElementById('unit-grid');
+    grid.innerHTML = unitList
+      .map((u) => {
+        const info = modules[u.id].unitInfo;
+        return `
+          <a class="unit-card" href="${u.path}">
+            <span class="unit-number">Unit ${info.number}</span>
+            <h3>${info.title}</h3>
+            <p>${info.topics.slice(0, 3).join(', ')}</p>
+          </a>
+        `;
+      })
+      .join('');
+  </script>
+</body>
+</html>
