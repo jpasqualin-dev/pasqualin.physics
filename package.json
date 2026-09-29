@@ -1,0 +1,12 @@
+{
+  "name": "pasqualin-physics",
+  "version": "1.0.0",
+  "description": "A study site for the College Board AP Physics 1 exam, with dynamically generated practice problems and interactive simulations for Units 0-8.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "start": "node -e \"console.log('Open index.html in a browser, or run: npx http-server -p 8080')\""
+  },
+  "license": "MIT"
+}

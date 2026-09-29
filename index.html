@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AP Physics 1 Study Hub</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <section class="hero">
+      <h1>AP Physics 1 Study Hub</h1>
+      <p>
+        Practice canonical AP Physics 1 problems with numbers that change every time, explore
+        interactive simulations, and review the exam format &mdash; organized by the College
+        Board's 8 units, plus a Unit 0 math refresher.
+      </p>
+    </section>
+
+    <section>
+      <h2>Units</h2>
+      <div class="unit-grid" id="unit-grid"></div>
+    </section>
+
+    <section>
+      <h2>Exam Resources</h2>
+      <a class="unit-card" href="exam-info.html">
+        <span class="unit-number">Reference</span>
+        <h3>Exam Info</h3>
+        <p>Science practices, course topics, exam format, and free-response question overview.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script type="module">
+    import { renderNav, renderFooter, unitList } from './assets/js/nav.mjs';
+    import * as unit0 from './assets/js/problems/unit0.mjs';
+    import * as unit1 from './assets/js/problems/unit1.mjs';
+    import * as unit2 from './assets/js/problems/unit2.mjs';
+    import * as unit3 from './assets/js/problems/unit3.mjs';
+    import * as unit4 from './assets/js/problems/unit4.mjs';
+    import * as unit5 from './assets/js/problems/unit5.mjs';
+    import * as unit6 from './assets/js/problems/unit6.mjs';
+    import * as unit7 from './assets/js/problems/unit7.mjs';
+    import * as unit8 from './assets/js/problems/unit8.mjs';
+
+    renderNav('', 'home');
+    renderFooter();
+
+    const modules = { unit0, unit1, unit2, unit3, unit4, unit5, unit6, unit7, unit8 };
+    const grid = document.getElementById('unit-grid');
+    grid.innerHTML = unitList
+      .map((u) => {
+        const info = modules[u.id].unitInfo;
+        return `
+          <a class="unit-card" href="${u.path}">
+            <span class="unit-number">Unit ${info.number}</span>
+            <h3>${info.title}</h3>
+            <p>${info.description}</p>
+          </a>
+        `;
+      })
+      .join('');
+  </script>
+</body>
+</html>
